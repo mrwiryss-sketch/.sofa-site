@@ -1,0 +1,636 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Для Софы</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #101010;
+            color: #e8e8e8;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Верхняя часть */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            animation: appear 1.2s ease;
+        }
+
+        .address {
+            color: #a75b6a;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: clamp(48px, 10vw, 86px);
+            font-weight: 500;
+            letter-spacing: -3px;
+            margin-bottom: 25px;
+        }
+
+        .intro {
+            color: #999;
+            font-size: 18px;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .scroll {
+            display: inline-block;
+            margin-top: 50px;
+            color: #777;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+            .scroll:hover {
+                color: #ccc;
+            }
+
+        /* Общие секции */
+
+        section:not(.hero) {
+            padding: 120px 25px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .label {
+            color: #a75b6a;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        h2 {
+            font-size: clamp(30px, 6vw, 48px);
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        /* Счётчик */
+
+        .counter-section {
+            background: #151515;
+        }
+
+        .counter-text {
+            color: #999;
+            margin-bottom: 35px;
+        }
+
+        .counter {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .counter-item {
+            border: 1px solid #292929;
+            padding: 25px 10px;
+            text-align: center;
+            background: #111;
+        }
+
+        .number {
+            display: block;
+            font-size: 32px;
+            color: #eee;
+            margin-bottom: 5px;
+        }
+
+        .unit {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .date {
+            margin-top: 20px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* Текст */
+
+        .letter {
+            background: #101010;
+        }
+
+        .letter-text {
+            max-width: 680px;
+            color: #b5b5b5;
+            font-size: 19px;
+            line-height: 1.9;
+        }
+
+            .letter-text p {
+                margin-bottom: 24px;
+            }
+
+        .signature {
+            color: #ddd;
+            margin-top: 35px;
+        }
+
+        /* Небольшой блок */
+
+        .simple {
+            background: #151515;
+        }
+
+        .simple-text {
+            color: #aaa;
+            font-size: 18px;
+            max-width: 600px;
+        }
+
+        /* Секрет */
+
+        .secret {
+            text-align: center;
+            background: #101010;
+        }
+
+            .secret button {
+                margin-top: 15px;
+                padding: 13px 25px;
+                border: 1px solid #444;
+                background: transparent;
+                color: #ddd;
+                cursor: pointer;
+                font-size: 15px;
+                transition: 0.3s;
+            }
+
+                .secret button:hover {
+                    background: #222;
+                    border-color: #666;
+                }
+
+        .secret-message {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: 0.7s ease;
+            color: #c77787;
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+            .secret-message.show {
+                max-height: 100px;
+                opacity: 1;
+                margin-top: 35px;
+            }
+
+        /* Финал */
+
+        .final {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #151515;
+        }
+
+            .final h2 {
+                font-size: clamp(40px, 8vw, 70px);
+            }
+
+            .final p {
+                color: #888;
+                font-size: 18px;
+            }
+
+        .line {
+            width: 40px;
+            height: 1px;
+            background: #a75b6a;
+            margin: 30px auto;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+            background: #0b0b0b;
+            color: #555;
+            font-size: 12px;
+        }
+
+        /* Анимация появления */
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: 1s ease;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Телефон */
+
+        @media (max-width: 600px) {
+
+            section:not(.hero) {
+                padding: 85px 20px;
+            }
+
+            .hero {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .intro {
+                font-size: 16px;
+            }
+
+            .counter {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .counter-item {
+                padding: 20px 5px;
+            }
+
+            .number {
+                font-size: 27px;
+            }
+
+            .letter-text {
+                font-size: 17px;
+                line-height: 1.8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Главный экран -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="address">
+                Адресат: Софа
+            </div>
+
+            <h1>
+                Для тебя.
+            </h1>
+
+            <p class="intro">
+                Я не особо умею говорить о таких вещах,
+                поэтому решил просто оставить это здесь.
+            </p>
+
+            <a href="#counter" class="scroll">
+                ↓ дальше
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Счётчик -->
+
+    <section class="counter-section hidden" id="counter">
+
+        <div class="container">
+
+            <div class="label">
+                С 15.06.2026
+            </div>
+
+            <h2>
+                Уже столько времени вместе
+            </h2>
+
+            <p class="counter-text">
+                И это только начало.
+            </p>
+
+            <div class="counter">
+
+                <div class="counter-item">
+                    <span class="number" id="days">0</span>
+                    <span class="unit">дней</span>
+                </div>
+
+                <div class="counter-item">
+                    <span class="number" id="hours">0</span>
+                    <span class="unit">часов</span>
+                </div>
+
+                <div class="counter-item">
+                    <span class="number" id="minutes">0</span>
+                    <span class="unit">минут</span>
+                </div>
+
+                <div class="counter-item">
+                    <span class="number" id="seconds">0</span>
+                    <span class="unit">секунд</span>
+                </div>
+
+            </div>
+
+            <div class="date">
+                15 июня 2026 — день, с которого всё началось.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Письмо -->
+
+    <section class="letter hidden">
+
+        <div class="container">
+
+            <div class="label">
+                Несколько слов
+            </div>
+
+            <h2>
+                Соф, это тебе.
+            </h2>
+
+            <div class="letter-text">
+
+                <p>
+                    Я не знаю, как правильно писать такие вещи,
+                    поэтому скажу просто.
+                </p>
+
+                <p>
+                    Ты стала для меня очень важным человеком.
+                    Мне правда хорошо с тобой, и я очень ценю
+                    всё, что у нас есть.
+                </p>
+
+                <p>
+                    Ты мне очень дорога. Я хочу проводить
+                    с тобой больше времени, смеяться,
+                    иногда спорить по мелочам и просто быть рядом.
+                </p>
+
+                <p>
+                    В общем, я просто хотел, чтобы ты знала:
+                    ты для меня очень много значишь.
+                </p>
+
+                <div class="signature">
+                    Люблю тебя.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Маленький блок -->
+
+    <section class="simple hidden">
+
+        <div class="container">
+
+            <div class="label">
+                Кстати
+            </div>
+
+            <h2>
+                Котик. Солнышко. Любимая.
+            </h2>
+
+            <p class="simple-text">
+                У тебя почему-то получается делать обычные
+                дни намного лучше. Наверное, поэтому мне
+                так нравится быть рядом с тобой.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Секрет -->
+
+    <section class="secret hidden">
+
+        <div class="container">
+
+            <div class="label">
+                Последнее
+            </div>
+
+            <h2>
+                Тут кое-что есть.
+            </h2>
+
+            <p style="color:#777;">
+                Нажми, если интересно.
+            </p>
+
+            <button onclick="openSecret()">
+                Открыть
+            </button>
+
+            <div class="secret-message" id="secretMessage">
+                Ты у меня одна.<br>
+                И я хочу, чтобы так и оставалось.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Финал -->
+
+    <section class="final hidden">
+
+        <div>
+
+            <div class="label">
+                Софа
+            </div>
+
+            <h2>
+                Я тебя люблю.
+            </h2>
+
+            <div class="line"></div>
+
+            <p>
+                Вот, собственно, и всё.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        Для Софы.
+    </footer>
+
+
+    <script>
+
+        /* Счётчик */
+
+        const startDate =
+            new Date("2026-06-15T00:00:00");
+
+        function updateCounter() {
+
+            const now = new Date();
+
+            let difference =
+                now - startDate;
+
+            if (difference < 0) {
+                difference = 0;
+            }
+
+            const totalSeconds =
+                Math.floor(difference / 1000);
+
+            const days =
+                Math.floor(totalSeconds / 86400);
+
+            const hours =
+                Math.floor(
+                    (totalSeconds % 86400) / 3600
+                );
+
+            const minutes =
+                Math.floor(
+                    (totalSeconds % 3600) / 60
+                );
+
+            const seconds =
+                totalSeconds % 60;
+
+            document.getElementById("days")
+                .textContent = days;
+
+            document.getElementById("hours")
+                .textContent = hours;
+
+            document.getElementById("minutes")
+                .textContent = minutes;
+
+            document.getElementById("seconds")
+                .textContent = seconds;
+        }
+
+        updateCounter();
+
+        setInterval(updateCounter, 1000);
+
+
+        /* Секрет */
+
+        function openSecret() {
+
+            document
+                .getElementById("secretMessage")
+                .classList
+                .add("show");
+
+        }
+
+
+        /* Появление блоков */
+
+        const elements =
+            document.querySelectorAll(".hidden");
+
+        const observer =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach((entry) => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target
+                                .classList
+                                .add("show");
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.15
+                }
+            );
+
+        elements.forEach((element) => {
+            observer.observe(element);
+        });
+
+    </script>
+
+</body>
+</html>
